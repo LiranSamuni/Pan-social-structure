@@ -1,13 +1,9 @@
-
 #Characterization of Pan social systems reveals in-group out-group distinction and out-group tolerance in bonobos
 #Samuni, Langergraber, Surbeck
 
 #code to evaluate the optimal number of clusters in Kokolopori
 
-data1=read.csv("Characterization of Pan social systems reveals in-group out-group distinction and out-group tolerance in bonobos - Supplementary Data1.csv", header=TRUE)
-data1$ind1=matrix(unlist(strsplit(as.character(data1$Dyad), split="_", fixed=T)), ncol=2, byrow=T)[,1]
-data1$ind2=matrix(unlist(strsplit(as.character(data1$Dyad), split="_", fixed=T)), ncol=2, byrow=T)[,2]
-
+data1=read.csv("Data1 - Characterization of Pan social systems reveals in-group out-group distinction and out-group tolerance in bonobos.csv", header=TRUE)
 
 ##Determining optimal number of clusters
 ####Cunducting hierarchical clustering
@@ -101,6 +97,11 @@ mtext(text="Kokolopori 2019", at=0.5, line=2, side=3, cex=1.2)
 ##Modularity
 library(igraph)
 library(graph4lg)
+
+##creating columns with individual ids
+data1$ind1=matrix(unlist(strsplit(as.character(data1$Dyad), split="_", fixed=T)), ncol=2, byrow=T)[,1]
+data1$ind2=matrix(unlist(strsplit(as.character(data1$Dyad), split="_", fixed=T)), ncol=2, byrow=T)[,2]
+
 
 #create matrices
 sr.2017=df_to_pw_mat(data1[data1$Year=="2017",], from="ind1", to="ind2", value="SRI.observed")
